@@ -10,6 +10,13 @@ END
     require 'set'
     require 'pp'
 
+
+    def initialize(hash)
+        debug "init refacter, save Facter values"
+        @facts = Facter.to_hash
+        super
+    end
+
     # actually perform the check and (optional) reload
     def run
         Puppet.debug("reloading facter to see if facts changed")
@@ -32,7 +39,7 @@ END
     end
 
     def reload_facts( pattern, pconf, pnode )
-        old = get_matching_facts( loaded_facts(pnode), pattern, pnode )
+        old = get_matching_facts( @facts, pattern, pnode )
         new = get_matching_facts( refreshed_facts, pattern, pnode )
         diff = diff_hashes( old, new ) 
         return diff
