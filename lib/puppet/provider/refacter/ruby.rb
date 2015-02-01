@@ -33,8 +33,8 @@ END
         end
         @refreshed = true
         Puppet.alert("reloading puppet to pick up new facts")
-        Puppet::Application.restart!
         pconf.run
+        Puppet::Application.stop!
         Puppet.alert("finished reloading puppet to pick up new facts")
     end
 
