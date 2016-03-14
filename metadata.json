@@ -1,0 +1,15 @@
+{
+  "name": "morpheu-refacter",
+  "version": "0.0.1",
+  "author": "Stephen R. Scaffidi",
+  "license": "MIT-style license that can be found in the LICENSE file",
+  "summary": "Puppet module to refresh facter and automatically reload on changes",
+  "source": "https://github.com/morpheu/puppet-refacter",
+  "project_page": "(https://github.com/morpheu/puppet-refacter)",
+  "issues_url": "https://github.com/morpheu/puppet-refacter/issues",
+  "tags": ["facter"],
+  "operatingsystem_support": [
+    {"operatingsystem": "Ubuntu",
+    "operatingsystemrelease": [ "14.04" ]}
+   ]
+}

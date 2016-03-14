@@ -11,6 +11,10 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
+.ruby-version
+.ruby-gemset
+*/spec/fixtures
+spec/fixtures
 
 # YARD artifacts
 .yardoc
