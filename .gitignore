@@ -20,3 +20,7 @@ spec/fixtures
 .yardoc
 _yardoc
 doc/
+/.tmp/classes.txt
+/.tmp/last_run_summary.yaml
+/.byebug_history
+/.tmp/resources.txt
