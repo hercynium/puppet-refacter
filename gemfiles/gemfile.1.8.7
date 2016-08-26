@@ -1,0 +1,14 @@
+source 'https://rubygems.org'
+
+gem 'rake', '~> 10.0.0', :require => false
+gem 'rspec-core', '3.1.7'
+gem 'puppetlabs_spec_helper', :require => false
+gem 'rspec-mocks'
+gem 'json', '1.8.3' # This is the last versions to support ruby pre 2.0 versions
+gem 'json_pure', '2.0.1' # This is the last versions to support ruby pre 2.0 versions
+
+if puppetversion = ENV['PUPPET_GEM_VERSION']
+  gem 'puppet', puppetversion, :require => false
+else
+  gem 'puppet', :require => false
+end

@@ -1,7 +1,8 @@
+[![Build Status](https://travis-ci.org/hajee/puppet-refacter.svg?branch=master)](https://travis-ci.org/hajee/puppet-refacter)
 puppet-refacter
 ===============
 
-Puppet provider to refresh facter and automatically reload if specified facts changed
+Puppet type and provider to refresh facter and automatically reload if specified facts changed
 
 Sometimes applying resources while running puppet changes the system in such
 a way that you need to *re-run puppet* to pick up new facts and finish making
@@ -37,4 +38,3 @@ client-server mode, *patches welcome*.
 
 --
 Stephen R. Scaffidi | stephen@scaffidi.net | Just Another (Perl|Python|Puppet) Hacker
-

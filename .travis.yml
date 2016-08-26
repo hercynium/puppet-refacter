@@ -1,0 +1,80 @@
+language: ruby
+
+cache: bundler
+
+rvm:
+  - 1.8.7
+  - 1.9.3
+  - 2.0.0
+  - 2.1.0
+  # - 2.2.0
+  # - jruby-19mode
+  # - rbx-19mode
+bundler_args: --without development
+
+# before_install:
+#   - rake spec_prep
+
+script:
+  - bundle exec rake spec
+# matrix:
+#   allow_failures:
+#     -rvm: jruby-19mode
+gemfile:
+  - gemfiles/gemfile.1.8.7
+  - gemfiles/gemfile.1.9.3
+  - gemfiles/gemfile.2.0.0
+
+env:
+  # - PUPPET_GEM_VERSION=3.0.2
+  # - PUPPET_GEM_VERSION=3.1.1
+  # - PUPPET_GEM_VERSION=3.2.4
+  # - PUPPET_GEM_VERSION=3.3.2
+  # - PUPPET_GEM_VERSION=3.4.3
+  - PUPPET_GEM_VERSION=3.7.3
+  - PUPPET_GEM_VERSION=3.7.4
+  - PUPPET_GEM_VERSION=3.7.5
+  - PUPPET_GEM_VERSION=3.8.3
+  - PUPPET_GEM_VERSION=4.0.0
+  - PUPPET_GEM_VERSION=4.1.0
+  - PUPPET_GEM_VERSION=4.2.3
+  - PUPPET_GEM_VERSION=4.3.2
+  - PUPPET_GEM_VERSION=4.4.2
+  - PUPPET_GEM_VERSION=4.5.3
+  - PUPPET_GEM_VERSION=4.6.1
+
+
+matrix:
+  exclude:
+    - rvm: 1.8.7
+      env: PUPPET_GEM_VERSION=4.0.0
+    - rvm: 1.8.7
+      env: PUPPET_GEM_VERSION=4.1.0
+    - rvm: 1.8.7
+      env: PUPPET_GEM_VERSION=4.2.3
+    - rvm: 1.8.7
+      env: PUPPET_GEM_VERSION=4.3.2
+    - rvm: 1.8.7
+      env: PUPPET_GEM_VERSION=4.4.2
+    - rvm: 1.8.7
+      env: PUPPET_GEM_VERSION=4.5.3
+    - rvm: 1.8.7
+      env: PUPPET_GEM_VERSION=4.6.1
+    - rvm: 1.9.3
+      env: PUPPET_GEM_VERSION=4.6.1
+    - rvm: 1.8.7
+      gemfile: gemfiles/gemfile.1.9.3
+    - rvm: 1.8.7
+      gemfile: gemfiles/gemfile.2.0.0
+    - rvm: 1.9.3
+      gemfile: gemfiles/gemfile.1.8.7
+    - rvm: 1.9.3
+      gemfile: gemfiles/gemfile.2.0.0
+    - rvm: 2.0.0
+      gemfile: gemfiles/gemfile.1.8.7
+    - rvm: 2.0.0
+      gemfile: gemfiles/gemfile.1.9.3
+    - rvm: 2.1.0
+      gemfile: gemfiles/gemfile.1.8.7
+    - rvm: 2.1.0
+      gemfile: gemfiles/gemfile.1.9.3
