@@ -46,10 +46,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  puppet (= 3.6.2)
+  puppet
   puppetlabs_spec_helper
   rake
   rspec (~> 3.1.0)
 
 BUNDLED WITH
-   1.12.5
+   1.13.1

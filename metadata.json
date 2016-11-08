@@ -1,12 +1,12 @@
 {
-  "name": "hajee-refacter",
+  "name": "yuav-refacter",
   "version": "0.1.0",
-  "author": "Stephen R. Scaffidi, Bert Hajee, Paulo Sousa",
+  "author": "Stephen R. Scaffidi, Bert Hajee, Paulo Sousa, Jon Skarpeteig",
   "license": "MIT-style license that can be found in the LICENSE file",
   "summary": "Puppet module to refresh facter and automatically reload on changes",
-  "source": "https://github.com/hajee/puppet-refacter",
-  "project_page": "(https://github.com/hajee/puppet-refacter)",
-  "issues_url": "https://github.com/hajee/puppet-refacter/issues",
+  "source": "https://github.com/Yuav/puppet-refacter",
+  "project_page": "https://github.com/Yuav/puppet-refacter",
+  "issues_url": "https://github.com/Yuav/puppet-refacter/issues",
   "tags": ["facter"],
   "operatingsystem_support": [
     {
