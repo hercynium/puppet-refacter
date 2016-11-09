@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/hajee/puppet-refacter.svg?branch=master)](https://travis-ci.org/hajee/puppet-refacter)
+[![Build Status](https://travis-ci.org/Yuav/puppet-refacter.svg?branch=master)](https://travis-ci.org/Yuav/puppet-refacter)
 puppet-refacter
 ===============
 
@@ -8,11 +8,7 @@ Sometimes applying resources while running puppet changes the system in such
 a way that you need to *re-run puppet* to pick up new facts and finish making
 changes.
 
-That sucks.
-
-Sure, the "correct" answer is probably to use an ENC or Hiera or Magic Unicorn Dust
-or some other thing like that, but this puppet module solved the problem well enough
-for me.
+This breaks the idempotency convention, and is really confusing with master less puppet deployments
 
 Just configure whatever resource makes the "offending" system changes to notify this
 resource, and if the facts this resource is configured to check have changed,
@@ -33,8 +29,3 @@ For example:
     # if facts matching the given patterns changed, puppet will reload
     # automatically. if nothing changed, it will continue as normal.
 
-Please note: ***this has only been tested in local mode***. If it doesn't work in
-client-server mode, *patches welcome*.
-
---
-Stephen R. Scaffidi | stephen@scaffidi.net | Just Another (Perl|Python|Puppet) Hacker

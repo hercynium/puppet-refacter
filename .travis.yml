@@ -1,23 +1,20 @@
 language: ruby
-
 cache: bundler
-
 rvm:
-  - 1.8.7
-  - 1.9.3
-  - 2.0.0
-  - 2.1.0
-  - 2.3.1
-bundler_args: --without development
-
+- 1.8.7
+- 1.9.3
+- 2.0.0
+- 2.1.0
+- 2.3.1
+bundler_args: "--without development"
 script:
-  - bundle exec rake spec
+- bundle exec rake spec
 gemfile:
-  - gemfiles/gemfile.1.8.7
-  - gemfiles/gemfile.1.9.3
-  - gemfiles/gemfile.2.0.0
-
+- gemfiles/gemfile.1.8.7
+- gemfiles/gemfile.1.9.3
+- gemfiles/gemfile.2.0.0
 env:
+  matrix:
   - PUPPET_VERSION=3.7.3
   - PUPPET_VERSION=3.7.4
   - PUPPET_VERSION=3.7.5
@@ -30,44 +27,52 @@ env:
   - PUPPET_VERSION=4.5.3
   - PUPPET_VERSION=4.6.1
   - PUPPET_VERSION=4.7.0
-
 matrix:
   exclude:
-    - rvm: 1.8.7
-      env: PUPPET_VERSION=4.0.0
-    - rvm: 1.8.7
-      env: PUPPET_VERSION=4.1.0
-    - rvm: 1.8.7
-      env: PUPPET_VERSION=4.2.3
-    - rvm: 1.8.7
-      env: PUPPET_VERSION=4.3.2
-    - rvm: 1.8.7
-      env: PUPPET_VERSION=4.4.2
-    - rvm: 1.8.7
-      env: PUPPET_VERSION=4.5.3
-    - rvm: 1.8.7
-      env: PUPPET_VERSION=4.6.1
-    - rvm: 1.9.3
-      env: PUPPET_VERSION=4.6.1
-    - rvm: 1.8.7
-      gemfile: gemfiles/gemfile.1.9.3
-    - rvm: 1.8.7
-      gemfile: gemfiles/gemfile.2.0.0
-    - rvm: 1.9.3
-      gemfile: gemfiles/gemfile.1.8.7
-    - rvm: 1.9.3
-      gemfile: gemfiles/gemfile.2.0.0
-    - rvm: 2.0.0
-      gemfile: gemfiles/gemfile.1.8.7
-    - rvm: 2.0.0
-      gemfile: gemfiles/gemfile.1.9.3
-    - rvm: 2.1.0
-      gemfile: gemfiles/gemfile.1.8.7
-    - rvm: 2.1.0
-      gemfile: gemfiles/gemfile.1.9.3
-    - rvm: 2.3.1
-      gemfile: gemfiles/gemfile.1.8.7
-    - rvm: 2.3.1
-      gemfile: gemfiles/gemfile.1.9.3
-    - rvm: 2.3.1
-      gemfile: gemfiles/gemfile.2.0.0
+  - rvm: 1.8.7
+    env: PUPPET_VERSION=4.0.0
+  - rvm: 1.8.7
+    env: PUPPET_VERSION=4.1.0
+  - rvm: 1.8.7
+    env: PUPPET_VERSION=4.2.3
+  - rvm: 1.8.7
+    env: PUPPET_VERSION=4.3.2
+  - rvm: 1.8.7
+    env: PUPPET_VERSION=4.4.2
+  - rvm: 1.8.7
+    env: PUPPET_VERSION=4.5.3
+  - rvm: 1.8.7
+    env: PUPPET_VERSION=4.6.1
+  - rvm: 1.9.3
+    env: PUPPET_VERSION=4.6.1
+  - rvm: 1.8.7
+    gemfile: gemfiles/gemfile.1.9.3
+  - rvm: 1.8.7
+    gemfile: gemfiles/gemfile.2.0.0
+  - rvm: 1.9.3
+    gemfile: gemfiles/gemfile.1.8.7
+  - rvm: 1.9.3
+    gemfile: gemfiles/gemfile.2.0.0
+  - rvm: 2.0.0
+    gemfile: gemfiles/gemfile.1.8.7
+  - rvm: 2.0.0
+    gemfile: gemfiles/gemfile.1.9.3
+  - rvm: 2.1.0
+    gemfile: gemfiles/gemfile.1.8.7
+  - rvm: 2.1.0
+    gemfile: gemfiles/gemfile.1.9.3
+  - rvm: 2.3.1
+    gemfile: gemfiles/gemfile.1.8.7
+  - rvm: 2.3.1
+    gemfile: gemfiles/gemfile.1.9.3
+  - rvm: 2.3.1
+    gemfile: gemfiles/gemfile.2.0.0
+deploy:
+  provider: puppetforge
+  user: yuav
+  password:
+    secure: VgetNjlnIAp2OyjESpLuT8fbtp6UgEQVn7OeudFbHz72NwRR0qlFWDo9Uzib1k9CqsmWwzALJE7FLLOU4Skz7mA5cvPm0NYwxfSxKSLs0w6FniSe0YRMWCrMr26n+jic6SVc4RgQZ9Han7ft/hMjMXMd67A1E+J8XVOgtsQJ2GQjrQ1AiQWKYoUGl0DawacZ9cIq3ZC2E0nIsMOfFO0XjTXdJ6F0soeGFsxbFl6qVhy/FwZlSfAYDQ8JRc4trOEBb/yCq7WBLn+hxxkEEf3/wmj1T7NHF5MxkHl1JeMtdkD3+CVVxginlDygZ4KJ+5WSzqRbGnEm9ZjfF4lWujm6Rcpnjiu//MCTFFFiw+BqdjQuhN4vRhSyl5Dbsy9MzrUFqNsx0QP8A1uUCPCy3y5fEuJFQ9ICKYJkEY70FX57BLa10mdApxTKoSXerRY52E9zG8FFLua8Ec3HiH9GgHoExAX/qduPrWMt4Qa2AJTRVZ5bPK+US5zSToXmTre0hcEYCZikgeIEpNdDH4voGmdEFE+KQpHDHBM8jpO/TR6nXXLVkno5L70HK9oWLRYi2Cr4UnBDbOCZMmhSfESOu220TIELYGIDNs5WCt7icK9c5MQD+qOZb+pxCYLz5/1U4zjv7dJ4rbRImzU3mMXrwgov7gh4dV1UtYQ+HyFxozI6wXs=
+  on:
+    tags: true
+    all_branches: true
+    condition: "$DEPLOY_TO_FORGE = yes"
