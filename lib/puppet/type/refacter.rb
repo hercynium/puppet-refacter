@@ -1,7 +1,3 @@
-# rubocop: disable Metrics/LineLength
-# rubocop: disable Style/Semicolon
-# rubocop: disable Style/HashSyntax
-
 Puppet::Type.newtype(:refacter) do
   desc <<-EOT
     Forces puppet to rerun facter to reload and refresh all facts, if any of

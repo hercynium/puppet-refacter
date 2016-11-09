@@ -1,6 +1,4 @@
 require 'spec_helper'
-# rubocop: disable Metrics/LineLength
-# rubocop: disable Style/HashSyntax
 
 describe Puppet::Type.type(:refacter) do
   TEMPDIR = '/tmp/refacter_run'.freeze
@@ -31,12 +29,12 @@ describe Puppet::Type.type(:refacter) do
   end
 
   context 'changing facter value for uptime_seconds' do
-    before :each do
+    before do
       Dir.mkdir(TEMPDIR)
       Dir.rmdir(TESTDIR) if File.exist?(TESTDIR)
     end
 
-    after :each do
+    after do
       Facter.clear
       Facter.clear_messages
       Dir.rmdir(TEMPDIR) if File.exist?(TEMPDIR)
@@ -44,7 +42,7 @@ describe Puppet::Type.type(:refacter) do
     end
 
     context 'no refacter type loaded' do
-      it 'should return same fact value before and after puppet run' do
+      it 'must return same fact value before and after puppet run' do
         current_update = Facter.value('uptime_seconds')
         sleep(1) # Make sure we have at least one second difference
         catalog = Puppet::Resource::Catalog.new
@@ -56,7 +54,7 @@ describe Puppet::Type.type(:refacter) do
     end
 
     context 'refacter class refeshed' do
-      it 'should return different fact value before and after puppet run' do
+      it 'must return different fact value before and after puppet run' do
         current_update = Facter.value('uptime_seconds')
         sleep(1) # Make sure we have at least one second difference
         catalog = Puppet::Resource::Catalog.new
@@ -66,7 +64,7 @@ describe Puppet::Type.type(:refacter) do
         expect(Facter.value('uptime_seconds')).not_to eq(current_update)
       end
 
-      it 'should run the next resource in the catalog after refacter' do
+      it 'must run the next resource in the catalog after refacter' do
         catalog = Puppet::Resource::Catalog.new
         catalog.add_resource(Puppet::Type.type(:file).new(:name => TEMPDIR, :ensure => 'absent', :force => true))
         catalog.add_resource(Puppet::Type.type(:refacter).new(:name => 'foo', :pattern => 'uptime_seconds', :subscribe => "File[#{TEMPDIR}]"))

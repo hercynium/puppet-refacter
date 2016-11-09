@@ -1,9 +1,6 @@
 require 'puppet/configurer'
 require 'set'
 require 'pp'
-# rubocop: disable Metrics/MethodLength
-# rubocop: disable Metrics/LineLength
-# rubocop: disable Style/Semicolon
 
 Puppet::Type.type(:refacter).provide(:ruby) do
   desc <<-END
