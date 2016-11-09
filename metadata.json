@@ -1,6 +1,6 @@
 {
   "name": "yuav-refacter",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "author": "Stephen R. Scaffidi, Bert Hajee, Paulo Sousa, Jon Skarpeteig",
   "license": "MIT",
   "summary": "Puppet module to refresh facter and automatically reload on changes",
