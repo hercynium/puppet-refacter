@@ -8,30 +8,29 @@ rvm:
 - 2.3.1
 bundler_args: "--without development"
 script:
-- bundle exec rake spec
+- bundle exec rake $CHECK
 gemfile:
 - gemfiles/gemfile.1.8.7
 - gemfiles/gemfile.1.9.3
 - gemfiles/gemfile.2.0.0
 env:
   matrix:
-  - PUPPET_VERSION=3.7.3
-  - PUPPET_VERSION=3.7.4
-  - PUPPET_VERSION=3.7.5
-  - PUPPET_VERSION=3.8.3
-  - PUPPET_VERSION=4.0.0
-  - PUPPET_VERSION=4.1.0
-  - PUPPET_VERSION=4.2.3
-  - PUPPET_VERSION=4.3.2
-  - PUPPET_VERSION=4.4.2
-  - PUPPET_VERSION=4.5.3
-  - PUPPET_VERSION=4.6.1
-  - PUPPET_VERSION=4.7.0
+  - PUPPET_VERSION=3.7.3 CHECK=spec
+  - PUPPET_VERSION=3.7.4 CHECK=spec
+  - PUPPET_VERSION=3.7.5 CHECK=spec
+  - PUPPET_VERSION=3.8.3 CHECK=spec
+  - PUPPET_VERSION=4.0.0 CHECK=spec
+  - PUPPET_VERSION=4.1.0 CHECK=spec
+  - PUPPET_VERSION=4.2.3 CHECK=spec
+  - PUPPET_VERSION=4.3.2 CHECK=spec
+  - PUPPET_VERSION=4.4.2 CHECK=spec
+  - PUPPET_VERSION=4.5.3 CHECK=spec
+  - PUPPET_VERSION=4.6.1 CHECK=spec
+  - PUPPET_VERSION=4.7.0 CHECK=spec
 matrix:
   include:
   - rvm: 2.3.1
-    env: PUPPET_VERSION="~> 4.0"
-    script: bundle exec rake rubocop
+    env: PUPPET_VERSION="~> 4.0" CHECK=rubocop
   - rvm: 2.3.1
     env: PUPPET_VERSION="~> 4.0" DEPLOY_TO_FORGE=yes
   exclude:
