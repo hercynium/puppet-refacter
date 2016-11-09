@@ -1,4 +1,4 @@
-ource ENV['GEM_SOURCE'] || "https://rubygems.org"
+source ENV['GEM_SOURCE'] || "https://rubygems.org"
 
 group :test do
   gem 'metadata-json-lint',                  :require => false
