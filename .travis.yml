@@ -33,7 +33,7 @@ matrix:
     env: PUPPET_VERSION="~> 4.0" CHECK=rubocop
     gemfile: Gemfile
   - rvm: 2.3.1
-    env: PUPPET_VERSION="~> 4.0" DEPLOY_TO_FORGE=yes
+    env: PUPPET_VERSION="~> 4.0" CHECK=spec DEPLOY_TO_FORGE=yes
     gemfile: Gemfile
   exclude:
   - rvm: 1.8.7
