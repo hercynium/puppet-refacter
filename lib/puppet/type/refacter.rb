@@ -83,30 +83,26 @@ EOT
     end
   end
 
-  newparam(:pattern) do
-    desc 'only reload if facts whose names match this pattern changed'
+  newparam( :pattern ) do
+    desc "only reload if facts whose names match this pattern changed"
     defaultto :undef
     validate do |val|
-      if resource[:patterns].nil? && val == :undef
+      if resource[:patterns].nil? and val == :undef
         raise ArgumentError, "Either 'pattern' or 'patterns' must be set."
       end
     end
     munge do |val|
       raise ArgumentError,
-            "Can not use both the 'pattern' and 'patterns' attributes " \
-            'at the same time.' unless resource[:patterns].nil?
-      pats = val.is_a?(Array) ? val : [val]
-      re = nil
+            "Can not use both the 'pattern' and 'patterns' attributes " +
+                "at the same time." unless resource[:patterns].nil?
+
       begin
-        re = Regexp.new(pats.shift, Regexp::EXTENDED)
-        re = re.union(pats) unless pats.empty?
-      rescue => _details
-        re = nil # make sure its nil
+        return Regexp.union(Array(val).map { |r|
+          Regexp.new(r, Regexp::EXTENDED) unless r.empty?
+        })
+      rescue => details
+        raise ArgumentError, 'Could not compile one of the pattern regexps:' + details.pretty_inspect()
       end
-      raise ArgumentError,
-            'Could not compile one of the followine regexps: ' +
-            pats.pretty_inspect if re.nil?
-      return re
     end
   end
 
