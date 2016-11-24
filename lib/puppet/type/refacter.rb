@@ -55,7 +55,7 @@ EOT
   # within refresh
   def check_all_attributes(refreshing = false)
     self.class.checks.each do |check|
-      next if refreshing && check == :refreshonly
+      next if refreshing and check == :refreshonly
       next unless @parameters.include?(check)
       val = @parameters[check].value
       val = [val] unless val.is_a? Array
