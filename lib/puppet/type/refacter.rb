@@ -55,7 +55,7 @@ EOT
   # within refresh
   def check_all_attributes(refreshing = false)
     self.class.checks.each do |check|
-      next if refreshing and check == :refreshonly
+      next if refreshing && check == :refreshonly
       next unless @parameters.include?(check)
       val = @parameters[check].value
       val = [val] unless val.is_a? Array
@@ -83,25 +83,23 @@ EOT
     end
   end
 
-  newparam( :pattern ) do
-    desc "only reload if facts whose names match this pattern changed"
+  newparam(:pattern) do
+    desc 'only reload if facts whose names match this pattern changed'
     defaultto :undef
     validate do |val|
-      if resource[:patterns].nil? and val == :undef
+      if resource[:patterns].nil? && val == :undef
         raise ArgumentError, "Either 'pattern' or 'patterns' must be set."
       end
     end
     munge do |val|
       raise ArgumentError,
-            "Can not use both the 'pattern' and 'patterns' attributes " +
-                "at the same time." unless resource[:patterns].nil?
+            "Can not use both the 'pattern' and 'patterns' attributes " \
+                'at the same time.' unless resource[:patterns].nil?
 
       begin
-        return Regexp.union(Array(val).map { |r|
-          Regexp.new(r, Regexp::EXTENDED) unless r.empty?
-        })
+        return Regexp.union(Array(val).map { |r| Regexp.new(r, Regexp::EXTENDED) unless r.empty? })
       rescue => details
-        raise ArgumentError, 'Could not compile one of the pattern regexps:' + details.pretty_inspect()
+        raise ArgumentError, 'Could not compile one of the pattern regexps:' + details.pretty_inspect
       end
     end
   end
