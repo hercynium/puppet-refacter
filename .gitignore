@@ -4,6 +4,7 @@
 .config
 .project
 .idea/
+.tmp/transactionstore.yaml
 coverage
 InstalledFiles
 lib/bundler/man

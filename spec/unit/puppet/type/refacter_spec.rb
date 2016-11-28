@@ -63,15 +63,6 @@ describe Puppet::Type.type(:refacter) do
         catalog.apply
         expect(Facter.value('uptime_seconds')).not_to eq(current_update)
       end
-
-      it 'must run the next resource in the catalog after refacter' do
-        catalog = Puppet::Resource::Catalog.new
-        catalog.add_resource(Puppet::Type.type(:file).new(:name => TEMPDIR, :ensure => 'absent', :force => true))
-        catalog.add_resource(Puppet::Type.type(:refacter).new(:name => 'foo', :pattern => 'uptime_seconds', :subscribe => "File[#{TEMPDIR}]"))
-        catalog.add_resource(Puppet::Type.type(:file).new(:name => TESTDIR, :ensure => 'directory', :require => 'Refacter[foo]'))
-        catalog.apply
-        expect(File.exist?(TESTDIR)).to eq(true)
-      end
     end
   end
 end

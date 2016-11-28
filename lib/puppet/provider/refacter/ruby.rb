@@ -41,7 +41,7 @@ Puppet::Type.type(:refacter).provide(:ruby) do
     transaction_uuid = SecureRandom.uuid
     environment = Puppet[:environment]
     options = {}
-    options[:report] = Puppet::Transaction::Report.new("apply", nil, environment, transaction_uuid)
+    options[:report] = Puppet::Transaction::Report.new('apply', nil, environment, transaction_uuid)
     options[:catalog] = catalog
 
     # Apply the full catalog
