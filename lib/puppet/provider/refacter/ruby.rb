@@ -32,9 +32,24 @@ Puppet::Type.type(:refacter).provide(:ruby) do
     end
     @refreshed = true
     Puppet.alert('reloading puppet to pick up new facts')
-    Puppet::Application.restart!
-    pconf.run
-    # Puppet::Application.stop!
+
+    # Recompile the catalog
+    catalog = Puppet::Resource::Catalog.indirection.find(Puppet[:node_name_value])
+    catalog = pconf.convert_catalog(catalog, 1)
+
+    # Set up run options
+    transaction_uuid = SecureRandom.uuid
+    environment = Puppet[:environment]
+    options = {}
+    options[:report] = Puppet::Transaction::Report.new("apply", nil, environment, transaction_uuid)
+    options[:catalog] = catalog
+
+    # Apply the full catalog
+    pconf.run(options)
+
+    # Abort the first catalog run, which is using old facts
+    Puppet::Application.stop!
+
     Puppet.alert('finished reloading puppet to pick up new facts')
     true
   end
