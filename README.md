@@ -29,3 +29,8 @@ For example:
     # if facts matching the given patterns changed, puppet will reload
     # automatically. if nothing changed, it will continue as normal.
 
+Limitations
+===========
+
+Currently it only works idemptoently with puppet apply, not puppet agent. For Puppet agent deployments,
+you have to run Puppet twice to see the new fact values like before
