@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Yuav/puppet-refacter.svg?branch=master)](https://travis-ci.org/Yuav/puppet-refacter)
+[![Build Status](https://travis-ci.org/onpuppet/puppet-refacter.svg?branch=master)](https://travis-ci.org/onpuppet/puppet-refacter)
 puppet-refacter
 ===============
 
