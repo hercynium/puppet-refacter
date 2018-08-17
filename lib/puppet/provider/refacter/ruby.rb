@@ -33,14 +33,14 @@ END
 
     def reload_facts( pattern, pconf, pnode )
         old = get_matching_facts( pattern, pnode )
-        pconf.reload_facter()
+        pconf.facts_for_uploading()
         new = get_matching_facts( pattern, pnode )
         diff = diff_hashes( old, new ) 
         return diff
     end
 
     def get_matching_facts( pattern, pnode )
-        fact_hash = Puppet::Node::Facts.find( pnode ).values()
+        fact_hash = Puppet::Node::Facts.indirection.find( pnode ).values()
         clean_facts = fact_hash.reject { |k,v| ( ! k.is_a?( String ) ) or k[0..0] == "_" }
         matched_facts = pattern ? clean_facts.reject { |k,v| ! pattern.match(k) } : clean_facts
         return matched_facts
