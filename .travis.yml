@@ -1,0 +1,85 @@
+language: ruby
+cache: bundler
+rvm:
+- 1.8.7
+- 1.9.3
+- 2.0.0
+- 2.1.0
+- 2.3.1
+bundler_args: "--without development"
+script:
+- bundle exec rake $CHECK
+gemfile:
+- gemfiles/gemfile.1.8.7
+- gemfiles/gemfile.1.9.3
+- gemfiles/gemfile.2.0.0
+env:
+  matrix:
+  - PUPPET_VERSION=3.7.3 CHECK=spec
+  - PUPPET_VERSION=3.7.4 CHECK=spec
+  - PUPPET_VERSION=3.7.5 CHECK=spec
+  - PUPPET_VERSION=3.8.3 CHECK=spec
+  - PUPPET_VERSION=4.0.0 CHECK=spec
+  - PUPPET_VERSION=4.1.0 CHECK=spec
+  - PUPPET_VERSION=4.2.3 CHECK=spec
+  - PUPPET_VERSION=4.3.2 CHECK=spec
+  - PUPPET_VERSION=4.4.2 CHECK=spec
+  - PUPPET_VERSION=4.5.3 CHECK=spec
+  - PUPPET_VERSION=4.6.1 CHECK=spec
+  - PUPPET_VERSION=4.7.0 CHECK=spec
+matrix:
+  include:
+  - rvm: 2.3.1
+    env: PUPPET_VERSION="~> 4.0" CHECK=rubocop
+    gemfile: Gemfile
+  - rvm: 2.3.1
+    env: PUPPET_VERSION="~> 4.0" CHECK=build DEPLOY_TO_FORGE=yes
+    gemfile: Gemfile
+  exclude:
+  - rvm: 1.8.7
+    env: PUPPET_VERSION=4.0.0
+  - rvm: 1.8.7
+    env: PUPPET_VERSION=4.1.0
+  - rvm: 1.8.7
+    env: PUPPET_VERSION=4.2.3
+  - rvm: 1.8.7
+    env: PUPPET_VERSION=4.3.2
+  - rvm: 1.8.7
+    env: PUPPET_VERSION=4.4.2
+  - rvm: 1.8.7
+    env: PUPPET_VERSION=4.5.3
+  - rvm: 1.8.7
+    env: PUPPET_VERSION=4.6.1
+  - rvm: 1.9.3
+    env: PUPPET_VERSION=4.6.1
+  - rvm: 1.8.7
+    gemfile: gemfiles/gemfile.1.9.3
+  - rvm: 1.8.7
+    gemfile: gemfiles/gemfile.2.0.0
+  - rvm: 1.9.3
+    gemfile: gemfiles/gemfile.1.8.7
+  - rvm: 1.9.3
+    gemfile: gemfiles/gemfile.2.0.0
+  - rvm: 2.0.0
+    gemfile: gemfiles/gemfile.1.8.7
+  - rvm: 2.0.0
+    gemfile: gemfiles/gemfile.1.9.3
+  - rvm: 2.1.0
+    gemfile: gemfiles/gemfile.1.8.7
+  - rvm: 2.1.0
+    gemfile: gemfiles/gemfile.1.9.3
+  - rvm: 2.3.1
+    gemfile: gemfiles/gemfile.1.8.7
+  - rvm: 2.3.1
+    gemfile: gemfiles/gemfile.1.9.3
+  - rvm: 2.3.1
+    gemfile: gemfiles/gemfile.2.0.0
+deploy:
+  provider: puppetforge
+  user: onpuppet
+  password:
+    secure: mSAOC6SFn3k5gQFNnHUpKQQCG05GitHVxWJIcr4nLs4ce3an/OvnIE9+FXXMEl+zifDmxP7PBZCYJWPY8SpKXoOHlMen4lfMFo4xTOm51mrEaLET0txt1dBZk4i+gbd+g6nhbhIgogAqyfsr7CRYwe4UBTnUWLVZIJxcmVF9e0O7A2vtM/XPdBH/cVxP2FKDqGbjDYXiqpxY8d2mhopakf5bWdkvW8UBEyvo3ZXoh61R+2RDkcAiYuAUwh9CLnLsFDS+4hGbWcHnUHzlXxoN6TJ/vpbm5AeilLI9exOP6/9ol+p2wGtMzNi0knHE1RiCkoDaZhipZZWo2htkHO2BKscno2EUvwsJB89iSV+nz191H8kMR5MnDWnfwgq2bASoc5OsNy6WeqYVi2ONxKb2bUpmtA0u47PedR3HC4BIvlQClsQy/oDRDo1KacAyzKaTkyjq8GBkKDxPS6AFhVT03CZjSqGxT4XPwwIxYIAw1H/v7HHLzkix8HV2q4UZB0J0S2D4JlTKnqyDiY4x8C+PSAbtY0+Qlj4z6V8fIiECkMEqd8A6EWkP7gCpQO4u3kgBnah9nWNHXJyK3qbO3vVfi8IiQDeESlrChV7Z/acLIyKLmch4aaxQ+7nvHikYSlmgEISnaV9nuszIPsvaYfICd4Dd8t3x7yf0z59e14w/xkM=
+  on:
+    tags: true
+    all_branches: true
+    condition: "$DEPLOY_TO_FORGE = yes"
